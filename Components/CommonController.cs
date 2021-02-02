@@ -98,9 +98,9 @@ namespace forDNN.Modules.UsersExportImport
 			return Source.Trim(new char[] { '\uFEFF', '\u200B', '\r' });
 		}
 
-		private static DataTable CSV2Table(byte[] lstBytes)
+		private static DataTable CSV2Table(byte[] lstBytes, char Separator)
 		{
-			string Separator = ",";
+			//char  Separator = ';';
 
 			DataTable dt = new DataTable();
 
@@ -112,7 +112,7 @@ namespace forDNN.Modules.UsersExportImport
 				return dt;
 			}
 
-			foreach (string Header in lstRows[0].Split(new char[] { ',' }))
+			foreach (string Header in lstRows[0].Split(new char[] { Separator }))
 			{
 				//lets remove white space chars from the column's name
 				dt.Columns.Add(RemoveWhiteSpaces(Header));
@@ -128,7 +128,7 @@ namespace forDNN.Modules.UsersExportImport
 				StringBuilder SubValue = new StringBuilder();
 				while (k < Value.Length)
 				{
-					if (Value[k].ToString() == Separator)
+					if (Value[k].ToString() == Separator.ToString())
 					{
 						//check is it new column
 						if (!WithinQuotes)
@@ -259,6 +259,7 @@ namespace forDNN.Modules.UsersExportImport
 			}
 
 			bool UpdateExistingUser = Convert.ToBoolean(objContext.Request.Form["cbUpdateExistingUser"]);
+			char Seperator = Convert.ToChar(objContext.Request.Form["rblSepCharacter"]);
 
 			HttpPostedFile objFile = objContext.Request.Files[0];
 
@@ -272,7 +273,7 @@ namespace forDNN.Modules.UsersExportImport
 			{
 				case ".csv":
 				case ".txt":
-					dt = CSV2Table(lstBytes);
+					dt = CSV2Table(lstBytes, Seperator);
 					break;
 				case ".xml":
 					dt = XML2Table(lstBytes);
@@ -304,6 +305,7 @@ namespace forDNN.Modules.UsersExportImport
 				try
 				{
 					DotNetNuke.Entities.Users.UserInfo objUser = new DotNetNuke.Entities.Users.UserInfo();
+					objUser.Email = string.Format("{0}", dr["Email"]); // email is required field
 					//use email as username, when username is not provided
 					objUser.Username = string.Format("{0}", GetDataRowValue(dt, dr, "Username", objUser.Email));
 
@@ -319,7 +321,6 @@ namespace forDNN.Modules.UsersExportImport
 
 
 					objUser.Profile.InitialiseProfile(objPortalSettings.PortalId, true);
-					objUser.Email = string.Format("{0}", dr["Email"]);
 					objUser.FirstName = string.Format("{0}", dr["FirstName"]);
 					objUser.LastName = string.Format("{0}", dr["LastName"]);
 					objUser.DisplayName = string.Format("{0}", GetDataRowValue(dt, dr, "DisplayName", string.Format("{0} {1}", dr["FirstName"], dr["LastName"])));

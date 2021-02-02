@@ -297,4 +297,11 @@
   <data name="UpdateExistingUser.Help" xml:space="preserve">
     <value>Update existing user when UserName exists in DB</value>
   </data>
+  <data name="SepCharacter.Text" xml:space="preserve">
+    <value>Field seperator (for csv files)</value>
+  </data>
+  <data name="SepCharacter.Help" xml:space="preserve">
+    <value>It depends on your localization, wether excel exports with ; or ,.</value>
+  </data>
+  
 </root>

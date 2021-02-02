@@ -87,6 +87,13 @@
                     <asp:ListItem Value="2" resourcekey="ImportRoles2"></asp:ListItem>
                 </asp:RadioButtonList>
             </div>
+			<div class="dnnFormItem">
+                <dnn:Label ID="Label1" runat="server" resourcekey="SepCharacter"></dnn:Label>
+                <asp:RadioButtonList runat="server" ID="rblSepCharacter">
+                    <asp:ListItem Value="," resourcekey="," ></asp:ListItem>
+                    <asp:ListItem Value=";" resourcekey=";" Selected></asp:ListItem>
+                </asp:RadioButtonList>
+            </div>
             <div class="dnnFormItem">
                 <dnn:Label ID="lblImportProfileProperties" runat="server" resourcekey="ImportProfileProperties"></dnn:Label>
                 <asp:CheckBox runat="server" ID="cbImportProfileProperties" CssClass="normalCheckBox" Checked="true" />
@@ -128,9 +135,7 @@
 <div>
     <asp:Label ID="lblResult" CssClass="NormalRed" runat="server"></asp:Label>
 </div>
-<div style="padding-top: 100px;">
-    <asp:Label ID="lblIcon" runat="server"></asp:Label>
-</div>
+
 
 <script type="text/javascript">
 
@@ -220,7 +225,10 @@
 		formData.append('rblImportRoles', $('[name="dnn$ctr' + moduleId + '$MainControl$rblImportRoles"]:checked').val());
 		formData.append('cbRandomPassword',					$("#<%=cbRandomPassword.ClientID%>").is(":checked"));
 		formData.append('cbForcePasswordChange',			$("#<%=cbForcePasswordChange.ClientID%>").is(":checked"));	
-		formData.append('cbEmailUser', $("#<%=cbEmailUser.ClientID%>").is(":checked"));
+        formData.append('cbEmailUser', $("#<%=cbEmailUser.ClientID%>").is(":checked"));
+
+        formData.append('rblSepCharacter', $('[name="dnn$ctr' + moduleId + '$MainControl$rblSepCharacter"]:checked').val());
+
 
 		var sf = $.ServicesFramework(moduleId);
 		var serviceUrl = sf.getServiceRoot('forDNN.UsersExportImport') + "ExportImport/DoImport";

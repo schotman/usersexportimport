@@ -8,3 +8,13 @@ D:\Work\Projects\forDNN\UsersExportImport\obj\Debug\forDNN.Modules.UsersExportIm
 D:\Work\Projects\forDNN\UsersExportImport\bin\forDNN.Modules.UsersExportImport.dll
 D:\Work\Projects\forDNN\UsersExportImport\bin\forDNN.Modules.UsersExportImport.pdb
 D:\Work\Projects\forDNN\UsersExportImport\obj\Debug\UsersExportImport.csprojResolveAssemblyReference.cache
+C:\Development\repos\schotman\userexportimport\obj\Debug\UsersExportImport.csprojAssemblyReference.cache
+C:\Development\repos\schotman\userexportimport\obj\Debug\UsersExportImport.csproj.CoreCompileInputs.cache
+C:\Development\repos\schotman\userexportimport\obj\Debug\forDNN.Modules.UsersExportImport.dll
+C:\Development\repos\schotman\userexportimport\obj\Debug\forDNN.Modules.UsersExportImport.pdb
+C:\Development\repos\schotman\userexportimport\bin\forDNN.Modules.UsersExportImport.dll.config
+C:\Development\repos\schotman\userexportimport\bin\forDNN.Modules.UsersExportImport.dll
+C:\Development\repos\schotman\userexportimport\bin\forDNN.Modules.UsersExportImport.pdb
+C:\Development\repos\schotman\userexportimport\bin\Newtonsoft.Json.dll
+C:\Development\repos\schotman\userexportimport\bin\System.Web.Http.dll
+C:\Development\repos\schotman\userexportimport\obj\Debug\UsersExportImport.csproj.CopyComplete

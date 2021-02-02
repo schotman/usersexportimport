@@ -40,9 +40,6 @@ namespace forDNN.Modules.UsersExportImport
 
 		private void ExtraPageLoad()
 		{
-			lblIcon.Visible = true;
-			lblIcon.Style["display"] = "block";
-			lblIcon.Text = "<a href=\"http://forDNN.com\" target=\"_blank\"><img src=\"http://forDNN.com/forDNNTeam.gif\" border=\"0\"/></a>";
 
 			lnkExampleCSV.NavigateUrl = ResolveUrl("Examples/Users_ExpotImport_CSV_Example.csv");
 			lnkExampleXML.NavigateUrl = ResolveUrl("Examples/Users_ExpotImport_XML_Example.xml");
