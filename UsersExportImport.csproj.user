@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ReferencePath>C:\WebSites\dnn910\bin\</ReferencePath>
     <UseIISExpress>false</UseIISExpress>
-    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+    <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />

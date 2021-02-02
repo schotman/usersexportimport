@@ -61,7 +61,7 @@
       <SourceInclude Include="**\*.sln" />
     </ItemGroup>
 
-    <CreateItem Include="install\_UsersExportImport.dnn">
+    <CreateItem Include="install\UsersExportImport.dnn">
       <Output TaskParameter="Include" ItemName="PackageManifestFiles" />
     </CreateItem>
 

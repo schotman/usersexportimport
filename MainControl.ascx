@@ -18,13 +18,13 @@
 </script>
 
 <div class="dnnForm" id="tabs-demo">
-    <ul class="dnnAdminTabNav">
+    <ul class="dnnAdminTabNav" style="display: none;">
         <li><a href="#divExportUsers">
             <asp:Label runat="server" ID="lblExportUsers" resourcekey="ExportUsers"></asp:Label></a></li>
         <li><a href="#divImportUsers">
             <asp:Label runat="server" ID="lblImportUsers" resourcekey="ImportUsers"></asp:Label></a></li>
     </ul>
-    <div id="divExportUsers" class="dnnClear dnnForm">
+    <asp:Panel id="divExportUsers" class="dnnClear dnnForm" runat="server" Visible="false">
         <fieldset>
             <div class="dnnFormItem">
                 <dnn:Label runat="server" ID="lblExportFileType" resourcekey="ExportFileType"></dnn:Label>
@@ -68,23 +68,23 @@
 		<div id="ExportInProgress" style="display:none;">
 			<asp:Label runat="server" ID="lblExportInProgress" resourcekey="ExportInProgress" CssClass="NormalRed"></asp:Label>
 		</div>
-    </div>
-    <div id="divImportUsers" class="dnnClear dnnForm">
+    </asp:Panel>
+    <asp:Panel id="divImportUsers" class="dnnClear dnnForm" runat="server" Visible="true">
         <fieldset>
             <div class="dnnFormItem">
                 <dnn:Label ID="lblImport" runat="server" resourcekey="Import"></dnn:Label>
                 <input id="objFile" type="file" name="objFile" runat="server">
             </div>
-            <div>
+            <div style="display: none;" >
                 <asp:Label ID="lblMaxAllowedFileSize" runat="server" CssClass="NormalRed"></asp:Label>
             </div>
-            <div class="dnnFormItem">
+            <div class="dnnFormItem" style="display: none;" >
                 <dnn:Label ID="lblImportRoles" runat="server" resourcekey="ImportRoles"></dnn:Label>
                 <asp:RadioButtonList runat="server" ID="rblImportRoles">
-                    <asp:ListItem Value="0" resourcekey="ImportRoles0" Selected></asp:ListItem>
+                    <asp:ListItem Value="0" resourcekey="ImportRoles0"></asp:ListItem>
                     <asp:ListItem Value="1" resourcekey="ImportRoles1"></asp:ListItem>
                     <asp:ListItem Value="3" resourcekey="ImportRoles3"></asp:ListItem>
-                    <asp:ListItem Value="2" resourcekey="ImportRoles2"></asp:ListItem>
+                    <asp:ListItem Value="2" resourcekey="ImportRoles2" Selected></asp:ListItem>
                 </asp:RadioButtonList>
             </div>
 			<div class="dnnFormItem">
@@ -94,42 +94,42 @@
                     <asp:ListItem Value=";" resourcekey=";" Selected></asp:ListItem>
                 </asp:RadioButtonList>
             </div>
-            <div class="dnnFormItem">
+            <div class="dnnFormItem" style="display: none;" >
                 <dnn:Label ID="lblImportProfileProperties" runat="server" resourcekey="ImportProfileProperties"></dnn:Label>
-                <asp:CheckBox runat="server" ID="cbImportProfileProperties" CssClass="normalCheckBox" Checked="true" />
+                <asp:CheckBox runat="server" ID="cbImportProfileProperties" CssClass="normalCheckBox" Checked="false" />
             </div>
-            <div class="dnnFormItem ProfileProperties">
+            <div class="dnnFormItem ProfileProperties" style="display: none;" >
                 <dnn:Label ID="lblUpdateExistingUser" runat="server" resourcekey="UpdateExistingUser"></dnn:Label>
-                <asp:CheckBox runat="server" ID="cbUpdateExistingUser" CssClass="normalCheckBox" />
+                <asp:CheckBox runat="server" ID="cbUpdateExistingUser" CssClass="normalCheckBox"  Checked="false" />
             </div>
-            <div class="dnnFormItem ProfileProperties">
+            <div class="dnnFormItem ProfileProperties" style="display: none;" >
                 <dnn:Label ID="lblCreateMissedProfileProperties" runat="server" resourcekey="CreateMissedProfileProperties"></dnn:Label>
-                <asp:CheckBox runat="server" ID="cbCreateMissedProfileProperties" CssClass="normalCheckBox" />
+                <asp:CheckBox runat="server" ID="cbCreateMissedProfileProperties" CssClass="normalCheckBox"  Checked="false" />
             </div>
-            <div class="dnnFormItem">
+            <div class="dnnFormItem" style="display: none;" >
                 <dnn:Label ID="lblRandomPassword" runat="server" resourcekey="RandomPassword"></dnn:Label>
                 <asp:CheckBox runat="server" ID="cbRandomPassword" CssClass="normalCheckBox" />
             </div>
             <div class="dnnFormItem">
                 <dnn:Label ID="lblForcePasswordChange" runat="server" resourcekey="ForcePasswordChange"></dnn:Label>
-                <asp:CheckBox runat="server" ID="cbForcePasswordChange" CssClass="normalCheckBox" />
+                <asp:CheckBox runat="server" ID="cbForcePasswordChange" CssClass="normalCheckBox" Checked="true"  />
             </div>
             <div class="dnnFormItem">
                 <dnn:Label ID="lblEmailUser" runat="server" resourcekey="EmailUser"></dnn:Label>
-                <asp:CheckBox runat="server" ID="cbEmailUser" CssClass="normalCheckBox" />
+                <asp:CheckBox runat="server" ID="cbEmailUser" CssClass="normalCheckBox" Checked="true"  />
             </div>
         </fieldset>
         <div style="clear: both;">
             <asp:LinkButton ID="btnImport" runat="server" CssClass="dnnPrimaryAction" resourcekey="ImportUsers"></asp:LinkButton>
         </div>
-        <fieldset>
+        <fieldset  style="display: none;">
             <div class="dnnFormItem">
                 <dnn:Label runat="server" ID="lblExamples" resourcekey="Examples"></dnn:Label>
                 <asp:HyperLink runat="server" ID="lnkExampleCSV" resourcekey="ExampleCSV" Target="_blank"></asp:HyperLink><br />
                 <asp:HyperLink runat="server" ID="lnkExampleXML" resourcekey="ExampleXML" Target="_blank"></asp:HyperLink>
             </div>
         </fieldset>
-    </div>
+    </asp:Panel>
 </div>
 
 <div>
@@ -204,12 +204,19 @@
 	function doImport(moduleId)
 	{
 		var formData = new FormData();
+        
 
 		var objItem = $("#<%=objFile.ClientID%>");
 		if (objItem[0].files.length == 0)
 		{
+            $("#<%=lblResult.ClientID%>").text("Please select file ...");
 			return false; //go to the next file
 		}
+        else {
+
+            $("#<%=lblResult.ClientID%>").text("Importing...");
+        }
+
 		var files = objItem[0].files;
 		var newName = "";
 		for (var i = 0; i < files.length; i++)
@@ -228,6 +235,7 @@
         formData.append('cbEmailUser', $("#<%=cbEmailUser.ClientID%>").is(":checked"));
 
         formData.append('rblSepCharacter', $('[name="dnn$ctr' + moduleId + '$MainControl$rblSepCharacter"]:checked').val());
+
 
 
 		var sf = $.ServicesFramework(moduleId);

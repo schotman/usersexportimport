@@ -33,6 +33,15 @@ namespace forDNN.Modules.UsersExportImport
         protected global::System.Web.UI.WebControls.Label lblImportUsers;
 
         /// <summary>
+        /// divExportUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel divExportUsers;
+
+        /// <summary>
         /// lblExportFileType control.
         /// </summary>
         /// <remarks>
@@ -202,6 +211,15 @@ namespace forDNN.Modules.UsersExportImport
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblExportInProgress;
+
+        /// <summary>
+        /// divImportUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel divImportUsers;
 
         /// <summary>
         /// lblImport control.
